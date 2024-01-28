@@ -93,7 +93,7 @@ export class LedPart {
 		this.#displayRootElement.innerHTML = `
             <div class="led-${displayId}-outer led-outer" style="width: ${settings.sizeX * settings.scale}px; height: ${settings.sizeY * settings.scale}px;">
                 <div id="led-${displayId}-inner" class="${displayId}-inner led-inner" style="background-image: url(${imagePath}); width: ${settings.sizeX}px; height: ${settings.sizeY}px; transform: scale(${settings.scale});"></div>
-                <div class="ami"></div>
+                <div class="ami" style="transform: scale(${settings.scale / 5 })"></div>
             </div>`;
 		this.drawDisplayElement(table[0].id);
 	}

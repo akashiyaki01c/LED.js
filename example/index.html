@@ -12,7 +12,7 @@
 			<div id="display-type"></div>
 			<div id="display-dest"></div>
 		</div>
-		<div id="input">
+		<div id="input" style="display: flex;">
 			<div id="input-type"></div>
 			<div id="input-dest"></div>
 		</div>
@@ -74,12 +74,12 @@
 			new led.LedPart("display-type", "input-type", "./type.png", destType, {
 				sizeX: 48, sizeY: 24,
 				offsetX: 0, offsetY: 0,
-				scale: 5
+				scale: 3
 			}, "ja"),
 			new led.LedPart("display-dest", "input-dest", "./dest.png", destData, {
 				sizeX: 96, sizeY: 24,
 				offsetX: 0, offsetY: 0,
-				scale: 5
+				scale: 3
 			}, "ja"),
 		]);
 		console.log(ledManager);
