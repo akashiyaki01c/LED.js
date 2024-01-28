@@ -1,7 +1,7 @@
 
 function getElementByIdStrict(id) {
 	let elem = document.getElementById(id);
-	if (elem === null) {
+	if (elem == null) {
 		throw Error("指定された要素は存在しません。");
 	}
 	return elem;
@@ -11,7 +11,10 @@ function getElementByIdStrict(id) {
  * LEDパーツの集合を管理するクラス。
  */
 export class LedManager {
-	/** LEDパーツの集合 */
+	/** 
+	 * LEDパーツの集合
+	 * @type {Array<LedPart>}
+	 */
 	#ledParts = [];
 
 	/**
@@ -21,15 +24,6 @@ export class LedManager {
 		if (!Array.isArray(ledParts)) 
 			throw Error("ledPartsが配列ではありません。");
 		this.#ledParts = ledParts;
-
-		setInterval(() => {
-			this.changeLang("ja");
-		}, 500);
-		setTimeout(() => {
-			setInterval(() => {
-				this.changeLang("en");
-			}, 500);
-		}, 250);
 	}
 
 	/** 表示言語の変更 */
@@ -123,8 +117,11 @@ export class LedPart {
 	 */
 	drawDisplayElement(id) {
 		const data = this.#table.find(v => v.id === id);
-		this.#getDisplayInnerElement().style.backgroundPositionX = `-${data.coords.find(v => v.lang === this.#nowDisplayLang).coord.x * this.#settings.sizeX + this.#settings.offsetX}px`;
-		this.#getDisplayInnerElement().style.backgroundPositionY = `-${data.coords.find(v => v.lang === this.#nowDisplayLang).coord.y * this.#settings.sizeY + this.#settings.offsetY}px`;
+		const coord = 
+			(data.coords.find(v => v.lang === this.#nowDisplayLang)
+			 || data.coords[0]).coord;
+		this.#getDisplayInnerElement().style.backgroundPositionX = `-${coord.x * this.#settings.sizeX + this.#settings.offsetX}px`;
+		this.#getDisplayInnerElement().style.backgroundPositionY = `-${coord.y * this.#settings.sizeY + this.#settings.offsetY}px`;
 		this.#nowDisplayId = id;
 	}
 

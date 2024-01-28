@@ -10,10 +10,20 @@
 	<main>
 		<div id="root-display" style="display: flex;">
 			<div id="display-type"></div>
+			<div id="display-hour1"></div>
+			<div id="display-hour2"></div>
+			<div id="display-colon"></div>
+			<div id="display-minute1"></div>
+			<div id="display-minute2"></div>
 			<div id="display-dest"></div>
 		</div>
 		<div id="input" style="display: flex;">
 			<div id="input-type"></div>
+			<div id="input-hour1"></div>
+			<div id="input-hour2"></div>
+			<div id="display-input"></div>
+			<div id="input-minute1"></div>
+			<div id="input-minute2"></div>
 			<div id="input-dest"></div>
 		</div>
 	</main>
@@ -24,65 +34,128 @@
 		const destType = [
 			new led.LedDisplayInfo("1st", "先発", [
 				{lang: "ja", coord: {x: 0, y: 0}},
-				{lang: "en", coord: {x: 1, y: 0}}
+				{lang: "en", coord: {x: 0, y: 0}}
 			]),
 			new led.LedDisplayInfo("2nd", "次発", [
 				{lang: "ja", coord: {x: 0, y: 1}},
-				{lang: "en", coord: {x: 1, y: 1}}
+				{lang: "en", coord: {x: 0, y: 1}}
 			]),
-			new led.LedDisplayInfo("outofservice", "回送", [
+			new led.LedDisplayInfo("last", "最終", [
 				{lang: "ja", coord: {x: 0, y: 2}},
-				{lang: "en", coord: {x: 1, y: 2}}
+				{lang: "en", coord: {x: 0, y: 2}}
+			]),
+		];
+		const timeData = [
+			new led.LedDisplayInfo("0", "0", [
+				{lang: "ja", coord: {x: 0, y: 0}}
+			]),
+			new led.LedDisplayInfo("1", "1", [
+				{lang: "ja", coord: {x: 0, y: 1}}
+			]),
+			new led.LedDisplayInfo("2", "2", [
+				{lang: "ja", coord: {x: 0, y: 2}}
+			]),
+			new led.LedDisplayInfo("3", "3", [
+				{lang: "ja", coord: {x: 0, y: 3}}
+			]),
+			new led.LedDisplayInfo("4", "4", [
+				{lang: "ja", coord: {x: 0, y: 4}}
+			]),
+			new led.LedDisplayInfo("5", "5", [
+				{lang: "ja", coord: {x: 0, y: 5}}
+			]),
+			new led.LedDisplayInfo("6", "6", [
+				{lang: "ja", coord: {x: 0, y: 6}}
+			]),
+			new led.LedDisplayInfo("7", "7", [
+				{lang: "ja", coord: {x: 0, y: 7}}
+			]),
+			new led.LedDisplayInfo("8", "8", [
+				{lang: "ja", coord: {x: 0, y: 8}}
+			]),
+			new led.LedDisplayInfo("9", "9", [
+				{lang: "ja", coord: {x: 0, y: 9}}
 			]),
 		];
 		const destData = [
-			new led.LedDisplayInfo("S01A", "谷上 (有馬温泉方面)", [
+			new led.LedDisplayInfo("S01", "谷上", [
 				{lang: "ja", coord: {x: 0, y: 0}},
 				{lang: "en", coord: {x: 1, y: 0}}
 			]),
-			new led.LedDisplayInfo("S01", "谷上", [
+			new led.LedDisplayInfo("S02", "新神戸", [
 				{lang: "ja", coord: {x: 0, y: 1}},
 				{lang: "en", coord: {x: 1, y: 1}}
 			]),
-			new led.LedDisplayInfo("S02", "新神戸", [
+			new led.LedDisplayInfo("S05", "大倉山", [
 				{lang: "ja", coord: {x: 0, y: 2}},
 				{lang: "en", coord: {x: 1, y: 2}}
 			]),
-			new led.LedDisplayInfo("S05", "大倉山", [
+			new led.LedDisplayInfo("S09", "新長田", [
 				{lang: "ja", coord: {x: 0, y: 3}},
 				{lang: "en", coord: {x: 1, y: 3}}
 			]),
-			new led.LedDisplayInfo("S09", "新長田", [
+			new led.LedDisplayInfo("S12", "名谷", [
 				{lang: "ja", coord: {x: 0, y: 4}},
 				{lang: "en", coord: {x: 1, y: 4}}
 			]),
-			new led.LedDisplayInfo("S12", "名谷", [
+			new led.LedDisplayInfo("S14", "学園都市", [
 				{lang: "ja", coord: {x: 0, y: 5}},
 				{lang: "en", coord: {x: 1, y: 5}}
 			]),
-			new led.LedDisplayInfo("S14", "学園都市", [
+			new led.LedDisplayInfo("S17", "西神中央", [
 				{lang: "ja", coord: {x: 0, y: 6}},
 				{lang: "en", coord: {x: 1, y: 6}}
-			]),
-			new led.LedDisplayInfo("S17", "西神中央", [
-				{lang: "ja", coord: {x: 0, y: 7}},
-				{lang: "en", coord: {x: 1, y: 7}}
 			]),
 		];
 
 		const ledManager = new led.LedManager([
-			new led.LedPart("display-type", "input-type", "./type.png", destType, {
+			new led.LedPart("display-type", "input-type", "./parts.png", destType, {
 				sizeX: 48, sizeY: 24,
 				offsetX: 0, offsetY: 0,
 				scale: 3
 			}, "ja"),
-			new led.LedPart("display-dest", "input-dest", "./dest.png", destData, {
-				sizeX: 96, sizeY: 24,
-				offsetX: 0, offsetY: 0,
+			new led.LedPart("display-hour1", "input-hour1", "./parts.png", timeData, {
+				sizeX: 12, sizeY: 24,
+				offsetX: 304, offsetY: 0,
+				scale: 3
+			}, "ja"),
+			new led.LedPart("display-hour2", "input-hour2", "./parts.png", timeData, {
+				sizeX: 12, sizeY: 24,
+				offsetX: 304, offsetY: 0,
+				scale: 3
+			}, "ja"),
+			new led.LedPart("display-minute1", "input-minute1", "./parts.png", timeData, {
+				sizeX: 12, sizeY: 24,
+				offsetX: 304, offsetY: 0,
+				scale: 3
+			}, "ja"),
+			new led.LedPart("display-minute2", "input-minute2", "./parts.png", timeData, {
+				sizeX: 12, sizeY: 24,
+				offsetX: 304, offsetY: 0,
+				scale: 3
+			}, "ja"),
+			new led.LedPart("display-dest", "input-dest", "./parts.png", destData, {
+				sizeX: 120, sizeY: 24,
+				offsetX: 56, offsetY: 0,
 				scale: 3
 			}, "ja"),
 		]);
-		console.log(ledManager);
+
+		(() => {
+			let type = 0;
+			setInterval(() => {
+				console.log(type);
+				switch (type) {
+					case 0:
+						ledManager.changeLang("ja");
+						break;
+					case 1:
+						ledManager.changeLang("en");
+						break;
+				}
+				type = (type + 1) % 2;
+			}, 500);
+		})();
 	</script>
 </body>
 </html>
