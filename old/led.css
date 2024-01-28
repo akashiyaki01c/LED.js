@@ -1,0 +1,23 @@
+
+.led-root, .maku-root {
+    display: inline-block;
+}
+
+.led-outer, .maku-outer {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.led-inner, .maku-inner {
+    position: absolute;
+    transform-origin: top left;
+}
+
+.ami {
+    position: absolute;
+    background-image: url(./ami.png);
+    height: 1000vh;
+    width: 1000vw;
+    image-rendering: pixelated;
+    transform-origin: top left;
+}

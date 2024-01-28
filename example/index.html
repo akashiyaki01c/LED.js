@@ -4,8 +4,85 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>LED.js test</title>
+	<link rel="stylesheet" href="../src/led.css">
 </head>
 <body>
+	<main>
+		<div id="root-display" style="display: flex;">
+			<div id="display-type"></div>
+			<div id="display-dest"></div>
+		</div>
+		<div id="input">
+			<div id="input-type"></div>
+			<div id="input-dest"></div>
+		</div>
+	</main>
 	<script type="module" src="../src/led.mjs"></script>
+	<script type="module">
+		import * as led from "../src/led.mjs";
+
+		const destType = [
+			new led.LedDisplayInfo("1st", "先発", [
+				{lang: "ja", coord: {x: 0, y: 0}},
+				{lang: "en", coord: {x: 1, y: 0}}
+			]),
+			new led.LedDisplayInfo("2nd", "次発", [
+				{lang: "ja", coord: {x: 0, y: 1}},
+				{lang: "en", coord: {x: 1, y: 1}}
+			]),
+			new led.LedDisplayInfo("outofservice", "回送", [
+				{lang: "ja", coord: {x: 0, y: 2}},
+				{lang: "en", coord: {x: 1, y: 2}}
+			]),
+		];
+		const destData = [
+			new led.LedDisplayInfo("S01A", "谷上 (有馬温泉方面)", [
+				{lang: "ja", coord: {x: 0, y: 0}},
+				{lang: "en", coord: {x: 1, y: 0}}
+			]),
+			new led.LedDisplayInfo("S01", "谷上", [
+				{lang: "ja", coord: {x: 0, y: 1}},
+				{lang: "en", coord: {x: 1, y: 1}}
+			]),
+			new led.LedDisplayInfo("S02", "新神戸", [
+				{lang: "ja", coord: {x: 0, y: 2}},
+				{lang: "en", coord: {x: 1, y: 2}}
+			]),
+			new led.LedDisplayInfo("S05", "大倉山", [
+				{lang: "ja", coord: {x: 0, y: 3}},
+				{lang: "en", coord: {x: 1, y: 3}}
+			]),
+			new led.LedDisplayInfo("S09", "新長田", [
+				{lang: "ja", coord: {x: 0, y: 4}},
+				{lang: "en", coord: {x: 1, y: 4}}
+			]),
+			new led.LedDisplayInfo("S12", "名谷", [
+				{lang: "ja", coord: {x: 0, y: 5}},
+				{lang: "en", coord: {x: 1, y: 5}}
+			]),
+			new led.LedDisplayInfo("S14", "学園都市", [
+				{lang: "ja", coord: {x: 0, y: 6}},
+				{lang: "en", coord: {x: 1, y: 6}}
+			]),
+			new led.LedDisplayInfo("S17", "西神中央", [
+				{lang: "ja", coord: {x: 0, y: 7}},
+				{lang: "en", coord: {x: 1, y: 7}}
+			]),
+		];
+
+		const ledManager = new led.LedManager([
+			new led.LedPart("display-type", "input-type", "./type.png", destType, {
+				sizeX: 48, sizeY: 24,
+				offsetX: 0, offsetY: 0,
+				scale: 5
+			}, "ja"),
+			new led.LedPart("display-dest", "input-dest", "./dest.png", destData, {
+				sizeX: 96, sizeY: 24,
+				offsetX: 0, offsetY: 0,
+				scale: 5
+			}, "ja"),
+		]);
+		console.log(ledManager);
+	</script>
 </body>
 </html>
